@@ -1,7 +1,5 @@
 from django.shortcuts import render
 
 # Create your views here.
-def home(request,name):
-    return render(request,'website/index.html',{
-        "name"  : name.capitalize()
-    })
+def home(request):
+    return render(request,'website/home.html')
