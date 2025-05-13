@@ -4,22 +4,20 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import RegistrationForm
 # Create your views here.
-def home(request):
-    return render(request,'website/home.html')
 
-def login_user(request):
+def home(request):
     if request.method == 'POST':
         username=request.POST.get('username')
         password=request.POST.get('password')
-        user=authenticate(username=username,password=password)
-        if user:
+        user=authenticate(request,username=username,password=password)
+        if user is not None:
             login(request,user)
             messages.success(request,'Congrats you have been logged in!')
             return redirect('home')
         else:
             messages.error(request,'Invalid credentials, try again!')
             return redirect('home')
-    return render(request,'website/login.html')
+    return render(request,'website/home.html')
 
 def logout_user(request):
     logout(request)
@@ -32,7 +30,7 @@ def register_user(request):
         if form.is_valid():
             form.save()
             messages.success(request,'You have been registered now can log in')
-            return redirect('login')
+            return redirect('home')
         else:
             messages.error(request, 'There were errors in the form. Please fix them and try again.')
     else:
