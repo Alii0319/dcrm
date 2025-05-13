@@ -3,9 +3,27 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<div class="center-page">
-    <h1>Welcome</h1>
-    <p>Here will be a crm app</p>
+<div class="center-page" >
+    <h1>Records</h1>
+    {% if records %}
+    {% for record in records %}
+    
+    {{record.first_name}}
+    {{record.last_name}}
+    {{record.email}}
+    {{record.phone}}
+    {{record.address}}
+    {{record.city}}
+    {{record.zipcode}}
+    {{record.created_at}}
+    {{record.id}}
+    
+    <br><br>
+    {% endfor %}
+    {% else %}
+    <br><br><br>
+    <h2>No Records found..</h2>
+    {% endif %}
 </div>
 {% else %}
 <br><br><br>

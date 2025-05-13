@@ -3,9 +3,11 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import RegistrationForm
+from .models import Record
 # Create your views here.
 
 def home(request):
+    records=Record.objects.all()
     if request.method == 'POST':
         username=request.POST.get('username')
         password=request.POST.get('password')
@@ -17,7 +19,9 @@ def home(request):
         else:
             messages.error(request,'Invalid credentials, try again!')
             return redirect('home')
-    return render(request,'website/home.html')
+    return render(request,'website/home.html',{
+        "records" : records
+    })
 
 def logout_user(request):
     logout(request)
