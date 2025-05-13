@@ -2,30 +2,48 @@
 {% block title %}Homepage{% endblock %}
 
 {% block content %}
+<br>
+<a href="{% url "add_record" %}" class='btn btn-secondary'>Add new Record</a>
 {% if user.is_authenticated %}
-<div class="center-page" >
-    <h1>Records</h1>
-    {% if records %}
-    {% for record in records %}
+{% if records %}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">City</th>
+            <th scope="col">ZipCode</th>
+            <th scope="col">Created At</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for record in records %}
+
+    <tr>
+        <td>{{record.id}}</td>
+    <td>{{record.first_name}} {{record.last_name}}</td>
+    <td>{{record.email}}</td>
+    <td>{{record.phone}}</td>
+    <td>{{record.address}}</td>
+    <td>{{record.city}}</td>
+    <td>{{record.zipcode}}</td>
+    <td>{{record.created_at}}</td>
+    </tr>
     
-    {{record.first_name}}
-    {{record.last_name}}
-    {{record.email}}
-    {{record.phone}}
-    {{record.address}}
-    {{record.city}}
-    {{record.zipcode}}
-    {{record.created_at}}
-    {{record.id}}
-    
-    <br><br>
     {% endfor %}
     {% else %}
     <br><br><br>
-    <h2>No Records found..</h2>
+    <br><br><br>
+    <center><h2>No Records found..</h2></center>
     {% endif %}
-</div>
+
 {% else %}
+      </tbody>
+</table>
+    
 <br><br><br>
 <center>
     <h1>Login</h1>

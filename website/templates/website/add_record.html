@@ -1,0 +1,17 @@
+{% extends "website/layout.html" %}
+{% block title %}New Record{% endblock %}
+
+{% block content %}
+<br><br><br>
+<center>
+    <h2>New record ...</h2>
+    <form method='post'>
+        {% csrf_token %}
+        <div class="col-md-3">
+            {{form.as_p}}
+        </div>
+        <button type='submit' class='btn btn-success'> Add </button>
+    </form></center>
+
+
+{% endblock %}

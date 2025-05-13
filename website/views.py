@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import RegistrationForm
+from .forms import RegistrationForm,NewRecordForm
 from .models import Record
 # Create your views here.
 
@@ -42,3 +42,19 @@ def register_user(request):
     return render(request,'website/register.html',{
         'form' : form   
          })
+
+
+def add_record(request):
+    if request.method == 'POST':
+        form=NewRecordForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'New record has been added')
+            return redirect('home')
+        else:
+            messages.error(request,'There were errors in the form. Please fix them and try again.')
+    else:
+        form=NewRecordForm()
+    return render(request,'website/add_record.html',{
+        "form" : form
+    })
