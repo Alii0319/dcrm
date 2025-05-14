@@ -4,13 +4,14 @@
 {% block content %}
 <br><br><br>
 <center>
-    <h2>New record ...</h2>
+    <h2>New record </h2>
     <form method='post'>
         {% csrf_token %}
         <div class="col-md-3">
             {{form.as_p}}
         </div>
         <button type='submit' class='btn btn-success'> Add </button>
+        <a href="{% url "home" %}" class='btn btn-primary me-5'>Back</a>
     </form></center>
 
 

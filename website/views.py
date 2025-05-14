@@ -89,5 +89,6 @@ def update_record(request,pk):
     else:
         form=NewRecordForm(instance=current_record)
     return render(request,'website/update_record.html',{
-        "form" : form
+        "form" : form,
+        "current_record" : current_record
     })
