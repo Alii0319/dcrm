@@ -2,12 +2,13 @@
 {% block title %}Homepage{% endblock %}
 
 {% block content %}
-<br>
-<a href="{% url "add_record" %}" class='btn btn-secondary'>Add new Record</a>
+<div class="container">
+    
 {% if user.is_authenticated %}
 {% if records %}
-<table class="table table-hover">
-    <thead>
+    <br>
+<table class="table table-hover table-bordered">
+    <thead class='table-dark'>
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Name</th>
@@ -23,7 +24,7 @@
       {% for record in records %}
 
     <tr>
-        <td>{{record.id}}</td>
+        <td><a href="{% url "customer_record" record.id %}">{{record.id}}</a></td>
     <td>{{record.first_name}} {{record.last_name}}</td>
     <td>{{record.email}}</td>
     <td>{{record.phone}}</td>
@@ -34,6 +35,8 @@
     </tr>
     
     {% endfor %}
+    </tbody>
+</table>
     {% else %}
     <br><br><br>
     <br><br><br>
@@ -41,8 +44,7 @@
     {% endif %}
 
 {% else %}
-      </tbody>
-</table>
+      
     
 <br><br><br>
 <center>
@@ -56,6 +58,6 @@
         <button type="submit" class="btn btn-success">Login</button>
     </form>
 </center>
-
+</div>
 {% endif %}
 {% endblock %}

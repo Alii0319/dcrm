@@ -39,7 +39,7 @@ class NewRecordForm(forms.ModelForm):
         'class' : 'form-control',
         'placeholder' : 'Last name'
     }))
-    email=forms.CharField(max_length=50,label='',widget=forms.EmailInput(attrs={
+    email=forms.CharField(required=False,max_length=50,label='',widget=forms.EmailInput(attrs={
         'class' : 'form-control',
         'placeholder' : 'Email'
     }))
@@ -59,7 +59,7 @@ class NewRecordForm(forms.ModelForm):
         'class' : 'form-control',
         'placeholder' : 'State'
     }))
-    zipcode=forms.CharField(max_length=50,label='',widget=forms.TextInput(attrs={
+    zipcode=forms.CharField(required=False,max_length=50,label='',widget=forms.TextInput(attrs={
         'class' : 'form-control',
         'placeholder' : 'Zipcode'
     }))
